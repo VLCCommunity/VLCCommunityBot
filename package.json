@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/VLCCommunity/VLCCommunityBot#readme",
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "node": "^16.14.2"
   },
   "dependencies": {

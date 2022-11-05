@@ -6,6 +6,7 @@
 
 // Imports and Client Setup
 
+require('dotenv').config();
 const { Client, Intents } = require("discord.js"); // Discord
 const { MongoClient } = require("mongodb"); // Mongo
 
