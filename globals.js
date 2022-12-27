@@ -17,7 +17,7 @@ const perms = async function (user) {
     else return 3;
 }
 
-const respond = async function (interaction, success, description) {
+const respond = async function (interaction, success, title, description='') {
   let color = 15548997;
   if (success) {
     color = 5763719;
@@ -26,6 +26,7 @@ const respond = async function (interaction, success, description) {
   await interaction.reply({
     embeds: [
       {
+        title: title,
         description: description,
         footer: {
           iconURL: client.user.displayAvatarURL(),
@@ -38,7 +39,7 @@ const respond = async function (interaction, success, description) {
   });
 };
 
-const respondAgain = async function (interaction, success, description) {
+const respondAgain = async function (interaction, success, title, description='') {
   let color = 15548997;
   if (success) {
     color = 5763719;
@@ -47,6 +48,7 @@ const respondAgain = async function (interaction, success, description) {
   await interaction.followUp({
     embeds: [
       {
+        title: title,
         description: description,
         footer: {
           iconURL: client.user.displayAvatarURL(),
