@@ -19,6 +19,7 @@ module.exports = async function(interaction) {
             }
         );
         globals.respond(interaction, true, ':white_check_mark: Partnership updated.', 'Do `/partners reload` to update partnership page.');
+        globals.log(interaction.user, 'Partnership updated.', `${interaction.guild.name} has been updated.`)
     } catch (error) {
         globals.respond(interaction, false, ':x: Partnership update failed.', `\`\`\`\n${error}\n\`\`\``);
     }

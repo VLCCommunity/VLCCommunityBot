@@ -10,6 +10,7 @@ module.exports = async function(interaction) {
     try {
         await guilds.deleteOne({ _id: interaction.options.getString('id') });
         globals.respond(interaction, true, ':white_check_mark: Partnership removed.', 'Do `/partners reload` to update partnership page.');
+        globals.log(interaction.user, 'Partnership removed.', `A server (ID: \`${interaction.options.getString('id')}\`) is no longer partnered.`)
     } catch (error) {
         globals.respond(interaction, false, ':x: Partnership removal failed.', `\`\`\`\n${error}\n\`\`\``);
     }

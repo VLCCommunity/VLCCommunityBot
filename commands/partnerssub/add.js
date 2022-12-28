@@ -15,6 +15,7 @@ module.exports = async function(interaction) {
             channel: interaction.options.getChannel('channel').id
         });
         globals.respond(interaction, true, ':white_check_mark: Partnership added.', 'Do `/partners reload` to update partnership page.');
+        globals.log(interaction.user, 'Partnership added.', `${interaction.guild.name} is now partnered.`)
     } catch (error) {
         globals.respond(interaction, false, ':x: Partnership failed.', `\`\`\`\n${error}\n\`\`\``);
     }
