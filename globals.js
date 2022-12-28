@@ -6,7 +6,7 @@
 
 const { client, guilds } = require('./index');
 
-const logsChannel = client.channels.fetch('1057066261164593292');
+const logsChannelID = '1057066261164593292';
 
 const perms = async function (user) {
     let comm = await client.guilds.fetch('829792672935575623');
@@ -61,7 +61,27 @@ const respondAgain = async function (interaction, success, title, description=''
   });
 };
 
+const log = async function (user, title, description='') {
+  const logsChannel = await client.channels.fetch(logsChannelID);
+  logsChannel.send({
+    embeds: [
+      {
+        title: title,
+        description: description,
+        author: {
+          name: user.tag,
+          icon_url: user.displayAvatarURL()
+        }, footer: {
+          iconURL: client.user.displayAvatarURL(),
+          text: 'VLC Community',
+        }, color: 2201331,
+      },
+    ],
+  });
+};
+
 const warn = async function (description) {
+  const logsChannel = await client.channels.fetch(logsChannelID);
   logsChannel.send({
     embeds: [
       {
@@ -78,6 +98,7 @@ const warn = async function (description) {
 };
 
 const error = async function (description) {
+  const logsChannel = await client.channels.fetch(logsChannelID);
   logsChannel.send({
     embeds: [
       {
@@ -94,10 +115,11 @@ const error = async function (description) {
 };
 
 module.exports = {
-  logsChannel: logsChannel,
+  logsChannelID: logsChannelID,
   perms: perms,
   respond: respond,
   respondAgain: respondAgain,
+  log: log,
   warn: warn,
   error: error
 };
