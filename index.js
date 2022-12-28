@@ -60,6 +60,11 @@ client.on("interactionCreate", async(interaction) => {
   }
 });
 
+client.on('messageCreate', async message => {
+  let messageFilters = require('./filters');
+  await messageFilters(message);
+});
+
 client.on("debug", (e) => {
   if (e.substr(6, 3) == "429") { // Discord ban/ratelimit
     console.log('Ban/ratelimit?')
