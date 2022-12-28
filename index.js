@@ -52,10 +52,10 @@ client.on("interactionCreate", async(interaction) => {
     }
   } else if (interaction.isButton()) {
     try {
-      let executeButton = require(`./buttons/${interaction.customId}`);
+      let executeButton = require(`./buttons/${interaction.customId.split('-')[0]}`);
       await executeButton(interaction);
     } catch (error) {
-      console.log(`❌ Unable to execute ${interaction.customId} button. \n` + error)
+      console.log(`❌ Unable to execute ${interaction.customId.split('-')[0]} button. \n` + error)
     }
   }
 });
