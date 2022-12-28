@@ -62,6 +62,7 @@ client.on("interactionCreate", async(interaction) => {
 
 client.on("debug", (e) => {
   if (e.substr(6, 3) == "429") { // Discord ban/ratelimit
-    exec("kill 1");
+    console.log('Ban/ratelimit?')
+    //exec("kill 1");
   };
 });
