@@ -76,5 +76,5 @@ module.exports = async function(interaction) {
     });
 
     globals.respondAgain(interaction, true, ':white_check_mark: Partnerships page reloaded.');
-    globals.log(interaction.user, 'Partnerships page reloaded.')
+    globals.log(interaction.user, '/partners reload')
 }

@@ -14,6 +14,6 @@ module.exports = async function(interaction) {
     let newConversation = await interaction.options.getChannel('channel').send( pings + '*Pssst...* 😊');
     interaction.channel.send({ content: `${pings}You should move to ${interaction.options.getChannel('channel')}! :smile:`, components: [{ type: 1, components: [{ type: 2, style: 'LINK', label: 'Move', url: newConversation.url }]}]});
 
-    globals.respond(interaction, true, ':smile: Conversation directed!');
+    globals.respond(interaction, true, '/direct');
     globals.log(interaction.user, '/direct', `${pings} directed to ${interaction.options.getChannel('channel')}.`);
 }

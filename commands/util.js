@@ -7,5 +7,15 @@
 const { client, guilds, globals } = require('../index');
 
 module.exports = async function(interaction) {
-    if (await  globals.perms(interaction.user) > 2) return globals.respond(interaction, false, ':x: Insufficient Permissions', 'You must be an Adminstrator or Hall Monitor to use this command.')
+    if (await  globals.perms(interaction.user) > 1) return globals.respond(interaction, false, '❌ Insufficient Permissions', 'You must be an administrator to use this command.');
+
+    try {
+        let executeSubcommand = require(`./utilsub/${interaction.options.getSubcommand()}`);
+        await executeSubcommand(interaction);
+      } catch (error) {
+        console.log(
+          `❌ Unable to execute ${interaction.options.getSubcommand()} util subcommand. \n` +
+            error
+        );
+      }
 }

@@ -7,11 +7,14 @@
 const { client, guilds, globals } = require('../../index');
 
 module.exports = async function(interaction) {
-    try {
-        await guilds.deleteOne({ _id: interaction.options.getString('id') });
-        globals.respond(interaction, true, ':white_check_mark: Partnership removed.', 'Do `/partners reload` to update partnership page.');
-        globals.log(interaction.user, '/partners remove', `A server (ID: \`${interaction.options.getString('id')}\`) is no longer partnered.`)
-    } catch (error) {
-        globals.respond(interaction, false, ':x: Partnership removal failed.', `\`\`\`\n${error}\n\`\`\``);
-    }
+    /*let allRoles = await interaction.guild.roles.fetch();
+    let roles = await allRoles.filter(role => {
+        role.name.startsWith('🎓 Grade') || role.name.startsWith('Retired')
+    });
+
+    console.log(roles.toJSON())
+    
+    Basically it's supposed to fetch all the roles that start with '🎓 Grade' or '🎓 Class of', check that all members have at least one of those roles, and then spit out a list (of pings) of members who don't have at least one of those roles.*/
+
+    globals.respond(interaction, true, 'Tell Ibrahim to make this.');
 }

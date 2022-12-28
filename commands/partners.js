@@ -18,11 +18,6 @@ module.exports = async function (interaction) {
         );
       }
     } else {
-      await globals.respond(
-        interaction,
-        false,
-        '❌ Insufficient Permissions',
-        'Only the Executive Adminstrator of VLC Community & Partners can execute this command.'
-      );
+      await globals.respond(interaction, false, '❌ Insufficient Permissions', 'Only the Executive Adminstrator of VLC Community & Partners can execute this command.');
     }
   };
