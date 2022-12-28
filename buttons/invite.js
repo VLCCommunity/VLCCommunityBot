@@ -7,6 +7,15 @@
 const { client, guilds, globals } = require('../index');
 
 module.exports = async function(interaction) {
-    console.log(interaction.customId);
-    globals.respond(interaction, 'true', 'hi')
+    let guild = await guilds.findOne({ _id: interaction.customId.split('-')[1] });
+    let channel = await client.channels.fetch(guild.channel);
+    let invite = await channel.createInvite({
+        maxUses: 1,
+        unique: true,
+        reason: `Requested by ${interaction.user.tag}`        
+    });
+    interaction.reply({
+        content: invite.url,
+        ephemeral: true
+    });
 }

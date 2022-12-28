@@ -7,5 +7,13 @@
 const { client, guilds, globals } = require('../index');
 
 module.exports = async function(interaction) {
-    //
+    let pings = `${interaction.options.getUser('member')} `;
+    if (interaction.options.getUser('member2')) { pings = pings + `${interaction.options.getUser('member2')} `}
+    if (interaction.options.getUser('member3')) { pings = pings + `${interaction.options.getUser('member3')} `}
+
+    let newConversation = await interaction.options.getChannel('channel').send( pings + '*Pssst...* 😊');
+    interaction.channel.send({ content: `${pings}You should move to ${interaction.options.getChannel('channel')}! :smile:`, components: [{ type: 1, components: [{ type: 2, style: 'LINK', label: 'Move', url: newConversation.url }]}]});
+
+    globals.respond(interaction, true, ':smile: Conversation directed!');
+    globals.log(interaction.user, '/direct', `${pings} directed to ${interaction.options.getChannel('channel')}.`);
 }

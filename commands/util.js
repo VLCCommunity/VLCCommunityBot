@@ -7,5 +7,5 @@
 const { client, guilds, globals } = require('../index');
 
 module.exports = async function(interaction) {
-    //
+    if (await  globals.perms(interaction.user) > 2) return globals.respond(interaction, false, ':x: Insufficient Permissions', 'You must be an Adminstrator or Hall Monitor to use this command.')
 }
