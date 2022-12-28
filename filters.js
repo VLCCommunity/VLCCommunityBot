@@ -30,6 +30,7 @@ module.exports = async function(message) {
 
     // Logger
     if (message.content.toLowerCase().includes('yusuf') || message.content.includes('<@218065068875579393>') || message.content.includes('dictator') || message.content.includes('tyrant') ) {
+        if (message.author.bot) return;
         let channel = await client.channels.fetch('1057610844193685514');
         channel.send({ embeds: [{
             author: {
