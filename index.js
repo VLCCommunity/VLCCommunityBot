@@ -9,6 +9,7 @@
 require('dotenv').config();
 const { Client, Intents } = require("discord.js"); // Discord
 const { MongoClient } = require("mongodb"); // Mongo
+const { exec } = require('child_process'); // exec() function
 
 const client = new Client({ intents: 98047 });
 const mongoDB = new MongoClient(process.env["MONGO_URI"], { useNewUrlParser: true, useUnifiedTopology: true });
@@ -67,7 +68,7 @@ client.on('messageCreate', async message => {
 
 client.on("debug", (e) => {
   if (e.substr(6, 3) == "429") { // Discord ban/ratelimit
-    console.log('Ban/ratelimit?')
-    //exec("kill 1");
+    console.log('Ban/Ratelimit')
+    exec("kill 1");
   };
 });
