@@ -51,7 +51,6 @@ module.exports = async function(message) {
     
     // Yusuf's Retirement Notice
     if (message.content.includes('<@218065068875579393>')) {
-        return;
         message.reply({ embeds: [{
             description: '**Please be informed that the Eternal Tyrant of the VLC, Yusuf Rahman, is retired and will not respond to pings.**\n\nFor matters relating to VLC Community, please contact Sarah Sameer Hasan or another administrator.\n\nFor matters relating to the VLC Archive, please contact Yasmeen Rabbani and Sarah Sameer Hasan.\n\nFor matters relating to the VLC Museum, please contact Shifa Syed.\n\nFor matters relating to the VLC Museum, please email `editor@vlcvoice.com` or DM `@vlc.thevoice` on Instagram.\n\nFor matters relating to VLC OneKey, please contact Ibrahim Siddique or Ahsen Khan.\n\nOnly DM Mr. Rahman for emergencies.',
             footer: {
