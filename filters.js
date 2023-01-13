@@ -7,12 +7,53 @@
 const { client, guilds, globals } = require('./index');
 
 module.exports = async function(message) {
-    if (message.author.bot) return;
-    // Yusuf'd Retirement Notice
+  if (message.author.bot) return;
+
+  // Introductions Channel
+  if (message.channel.id == '829792673451868263' && message.type == 'REPLY') {
+    let messageReply = await message.reply({ embeds: [{
+      description: 'This channel is for new members to introduce themselves. Please respond to introductions by creating threads.',
+      footer: {
+        iconURL: client.user.displayAvatarURL(),
+        text: 'VLC Community',
+      }, color: 2201331
+    }]});
+    setTimeout(async () => { try { await message.delete() } catch { } }, 10000);
+    setTimeout(async () => { try { await messageReply.delete() } catch { } }, 10000);
+  }
+
+  // Not Instagram Channel
+  if (message.channel.id == '1063254087266742272') {
+    if (message.attachments.size == 0 && message.embeds.length == 0 && !message.content.startsWith('> ') && !message.content.includes('http')) {
+      let messageReply = await message.reply({ embeds: [{
+        description: 'This channel is for members to post content such as media, links, and quotes here and share what they\'re up to. Your message does not seem to meet those guidelines.',
+        footer: {
+          iconURL: client.user.displayAvatarURL(),
+          text: 'VLC Community',
+        }, color: 2201331
+      }]});
+      setTimeout(async () => { try { await message.delete() } catch { } }, 10000);
+      setTimeout(async () => { try { await messageReply.delete() } catch { } }, 10000);
+    } else if (message.type == 'REPLY') {
+      let messageReply = await message.reply({ embeds: [{
+        description: 'Create a thread to comment on posts.',
+        footer: {
+          iconURL: client.user.displayAvatarURL(),
+          text: 'VLC Community',
+        }, color: 2201331
+      }]});
+      setTimeout(async () => { try { await message.delete() } catch { } }, 10000);
+      setTimeout(async () => { try { await messageReply.delete() } catch { } }, 10000);
+    }
+  }
+
+  //
+    
+    // Yusuf's Retirement Notice
     if (message.content.includes('<@218065068875579393>')) {
         return;
         message.reply({ embeds: [{
-            description: '**Please be informed that the Eternal Tyrant of the VLC, Yusuf Rahman, is retired and will not respond to pings.**\n\nFor matters relating to VLC Community, please contact an administrator.\n\nFor matters relating to the VLC Archive, please contact Yasmeen Rabbani and Sarah Sameer Hasan.\n\nFor matters relating to the VLC Museum, please contact Shifa Syed.\n\nFor matters relating to the VLC Museum, please email `editor@vlcvoice.com` or DM `@vlc.thevoice` on Instagram.\n\nFor matters relating to VLC OneKey, please contact Ibrahim Siddique or Ahsen Khan.\n\nOnly DM Mr. Rahman for emergencies.',
+            description: '**Please be informed that the Eternal Tyrant of the VLC, Yusuf Rahman, is retired and will not respond to pings.**\n\nFor matters relating to VLC Community, please contact Sarah Sameer Hasan or another administrator.\n\nFor matters relating to the VLC Archive, please contact Yasmeen Rabbani and Sarah Sameer Hasan.\n\nFor matters relating to the VLC Museum, please contact Shifa Syed.\n\nFor matters relating to the VLC Museum, please email `editor@vlcvoice.com` or DM `@vlc.thevoice` on Instagram.\n\nFor matters relating to VLC OneKey, please contact Ibrahim Siddique or Ahsen Khan.\n\nOnly DM Mr. Rahman for emergencies.',
             footer: {
                 iconURL: client.user.displayAvatarURL(),
                 text: 'VLC Community',

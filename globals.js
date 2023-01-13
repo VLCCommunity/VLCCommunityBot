@@ -11,6 +11,7 @@ const logsChannelID = '1057066261164593292';
 const perms = async function (user) {
     let comm = await client.guilds.fetch('829792672935575623');
     let commMember = await comm.members.fetch(user.id);
+    if (!commMember) return 3;
     if (user.id == '218065068875579393' || commMember.roles.cache.has('860576761287934013')) return 0;
     else if (commMember.roles.cache.has('829792673090502764')) return 1;
     else if (commMember.roles.cache.has('829792673090502763')) return 2;
