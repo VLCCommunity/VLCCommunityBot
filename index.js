@@ -63,7 +63,11 @@ client.on("interactionCreate", async(interaction) => {
 
 client.on('messageCreate', async message => {
   let messageFilters = require('./filters');
-  await messageFilters(message);
+  try {
+    await messageFilters(message);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 client.on("debug", (e) => {
