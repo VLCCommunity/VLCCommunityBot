@@ -11,7 +11,7 @@ const { Client, Intents } = require("discord.js"); // Discord
 const { MongoClient } = require("mongodb"); // Mongo
 const { exec } = require('child_process'); // exec() function
 
-const client = new Client({ intents: 98047 });
+const client = new Client({ intents: 98049 });
 const mongoDB = new MongoClient(process.env["MONGO_URI"], { useNewUrlParser: true, useUnifiedTopology: true });
 
 // MongoDB
