@@ -4,7 +4,8 @@
  *  The VLC name, logo, and all other branding are property of the Virtual Learning Center.
  *--------------------------------------------------------------------------------------------*/
 
-const { client, guilds, globals } = require("./index");
+const { client, globals } = require("./index");
+const { ButtonStyle } = require("discord.js");
 
 module.exports = async function (message) {
     if (message.author.bot) return;
@@ -161,7 +162,7 @@ module.exports = async function (message) {
                     components: [
                         {
                             type: 2,
-                            style: "LINK",
+                            style: ButtonStyle.Link,
                             label: "Jump",
                             url: message.url,
                         },
