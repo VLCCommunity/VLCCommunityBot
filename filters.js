@@ -128,17 +128,17 @@ module.exports = async function (message) {
         message.delete();
     }
 
+    // Convert message content to lowercase
+    let lowerCaseMessage = message.content.toLowerCase();
+
+    // Message conditions
+    let conditions = ["yusuf", "<@218065068875579393>", "dictator", "tyrant", "mustafa", "ahsen", "ibrahim", "karma", "mahr", "mahar"]
+
+    // Whether to log the message
+    const logMessage = conditions.some(condition => lowerCaseMessage.includes(condition));
+
     // Logger
-    if (
-        message.content.toLowerCase().includes("yusuf") ||
-        message.content.includes("<@218065068875579393>") ||
-        message.content.toLowerCase().includes("dictator") ||
-        message.content.toLowerCase().includes("tyrant") ||
-        message.content.toLowerCase().includes("mustafa") ||
-        message.content.toLowerCase().includes("karma") ||
-        message.content.toLowerCase().includes("mahr") ||
-        message.content.toLowerCase().includes("mahar")
-    ) {
+    if (logMessage) {
         let channel = await client.channels.fetch("1057610844193685514");
         await channel.send({
             embeds: [
@@ -170,32 +170,5 @@ module.exports = async function (message) {
                 },
             ],
         });
-    }
-
-    if (
-        message.content.toLowerCase().includes("rywend")
-    ) {
-        await message
-            .reply({
-                embeds: [
-                    {
-                        title: `:warning: Message flagged for inappropriate content.`,
-                        description:
-                            "Please remember to follow [server rules](https://vlccommunity.notion.site/VLC-Community-1c48433ae5514f2aad54903503c06ebd).",
-                        footer: {
-                            iconURL: client.user.displayAvatarURL(),
-                            text: "VLC Community",
-                        },
-                        color: 2201331,
-                    },
-                ],
-            })
-            .then((newMessage) => {
-                setTimeout(() => {
-                    newMessage.delete();
-                }, 3500);
-            });
-
-        await message.delete();
     }
 };
