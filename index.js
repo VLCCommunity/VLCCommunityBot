@@ -7,11 +7,10 @@
 // Imports and Client Setup
 
 require('dotenv').config();
-const { Client, Intents } = require("discord.js"); // Discord
+const { Client, GatewayIntentBits } = require("discord.js"); // Discord
 const { MongoClient } = require("mongodb"); // Mongo
-const { exec } = require('child_process'); // exec() function
 
-const client = new Client({ intents: 98049 });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers] });
 const mongoDB = new MongoClient(process.env["MONGO_URI"], { useNewUrlParser: true, useUnifiedTopology: true });
 
 // MongoDB
@@ -68,11 +67,4 @@ client.on('messageCreate', async message => {
   } catch (err) {
     console.log(err);
   }
-});
-
-client.on("debug", (e) => {
-  if (e.substr(6, 3) == "429") { // Discord ban/ratelimit
-    console.log('Ban/Ratelimit')
-    exec("kill 1");
-  };
 });
