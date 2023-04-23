@@ -153,7 +153,7 @@ module.exports = async function (message) {
                         text: message.guild.name,
                     },
                     color: 2201331,
-                    timestamp: message.createdTimestamp,
+                    timestamp: new Date(message.createdTimestamp).toISOString(),
                 },
             ],
             components: [
