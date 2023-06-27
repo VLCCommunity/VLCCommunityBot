@@ -65,7 +65,7 @@ module.exports = async function(interaction) {
 
     const clubserversButtons = new ActionRowBuilder()
         .addComponents(
-            clubs.map(c => new ButtonBuilder().setStyle("PRIMARY").setCustomId(`invite-${c._id}`).setLabel(c.name)
+            clubs.map(c => new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${c._id}`).setLabel(c.name)
         ));
 
     channels.forEach(async channelID => {
