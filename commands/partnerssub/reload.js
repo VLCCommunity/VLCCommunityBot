@@ -68,7 +68,7 @@ module.exports = async function(interaction) {
             clubs.map(c => new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${c._id}`).setLabel(c.name)
         ));
 
-    channels.forEach(async channelID => {
+    await channels.forEach(async channelID => {
         if (!channelID) return;
 
         let channel = await client.channels.fetch(channelID);
