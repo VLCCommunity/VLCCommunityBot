@@ -49,7 +49,7 @@ module.exports = async function(interaction) {
     const mainPartnersButtons = new MessageActionRow()
         .addComponents(
             new MessageButton().setStyle('PRIMARY').setCustomId(`invite-${community._id}`).setLabel('VLC Community'),
-            new MessageButton().setStyle('PRIMARY').setCustomId(`invite-${communityOld._id}`).setLabel('VLC Classic'),
+            new MessageButton().setStyle('LINK').setLabel('VLC Classic').setURL(communityOld.invite),
             new MessageButton().setStyle('LINK').setLabel('VLC Archive').setURL('https://vlccommunity.notion.site/b73d20c433be47b0859fd792250dd8ca?v=88377dd7b209401090223851b6dcc037'),
             // new MessageButton().setStyle('LINK').setLabel('VLC Museum').setURL('https://vlccommunity.notion.site/VLC-Museum-7acf51d0302040eb9d923a37762bf6a0'),
             new MessageButton().setStyle('LINK').setLabel('The Voice').setURL('https://vlcvoice.com/')
