@@ -5,9 +5,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 const { client, guilds, globals } = require('../../index');
-const { MessageAttachment, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { AttachmentBuilder, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 
-const header = new MessageAttachment('./commands/partnerssub/partners.png')
+const header = new AttachmentBuilder('./commands/partnerssub/partners.png')
 const mainPartners = new MessageEmbed()
     .setColor('#2196F3')
     .addFields(
