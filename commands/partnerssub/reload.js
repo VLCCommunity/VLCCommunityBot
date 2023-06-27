@@ -5,10 +5,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 const { client, guilds, globals } = require('../../index');
-const { AttachmentBuilder, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { AttachmentBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
 
 const header = new AttachmentBuilder('./commands/partnerssub/partners.png')
-const mainPartners = new MessageEmbed()
+const mainPartners = new EmbedBuilder()
     .setColor('#2196F3')
     .addFields(
         { 'name': 'VLC Community', 'value': 'Central Discord server for all VLC students.'},
@@ -17,17 +17,17 @@ const mainPartners = new MessageEmbed()
         // { 'name': 'VLC Museum', 'value': 'Coming soon.' },
         { 'name': 'The Voice', 'value': 'VLC\'s leading news media publication.' }
     )
-const gradeservers = new MessageEmbed()
+const gradeservers = new EmbedBuilder()
     .setColor('#2196F3')
     .setTitle('Grade Servers')
     .setDescription('Discord servers for each grade - **please do not join a server if you are not taking a course in that grade.**')
 
-const clubservers = new MessageEmbed()
+const clubservers = new EmbedBuilder()
     .setColor('#2196F3')
     .setTitle('Club Servers')
     .setDescription('Discord servers for various school clubs.')
 
-const footer = new MessageEmbed()
+const footer = new EmbedBuilder()
     .setColor('#2196F3')
     .setDescription('*VLC Community is student-run and not school-sanctioned, and is not in any way affiliated with or endorsed by the VLC. The VLC name, logo, and all other branding are property of the Virtual Learning Center.*\n\n*Proudly under the eternal tyranny of the great dictator Yusuf Rahman.* <:yusufr:942827654397198396>')
 
@@ -46,26 +46,26 @@ module.exports = async function(interaction) {
     //console.log(clubs);
     //console.log(community._id)
 
-    const mainPartnersButtons = new MessageActionRow()
+    const mainPartnersButtons = new ActionRowBuilder()
         .addComponents(
-            new MessageButton().setStyle('PRIMARY').setCustomId(`invite-${community._id}`).setLabel('VLC Community'),
-            new MessageButton().setStyle('LINK').setLabel('VLC Classic').setURL(communityOld.invite),
-            new MessageButton().setStyle('LINK').setLabel('VLC Archive').setURL('https://vlccommunity.notion.site/b73d20c433be47b0859fd792250dd8ca?v=88377dd7b209401090223851b6dcc037'),
-            // new MessageButton().setStyle('LINK').setLabel('VLC Museum').setURL('https://vlccommunity.notion.site/VLC-Museum-7acf51d0302040eb9d923a37762bf6a0'),
-            new MessageButton().setStyle('LINK').setLabel('The Voice').setURL('https://vlcvoice.com/')
+            new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${community._id}`).setLabel('VLC Community'),
+            new ButtonBuilder().setStyle('LINK').setLabel('VLC Classic').setURL(communityOld.invite),
+            new ButtonBuilder().setStyle('LINK').setLabel('VLC Archive').setURL('https://vlccommunity.notion.site/b73d20c433be47b0859fd792250dd8ca?v=88377dd7b209401090223851b6dcc037'),
+            // new ButtonBuilder().setStyle('LINK').setLabel('VLC Museum').setURL('https://vlccommunity.notion.site/VLC-Museum-7acf51d0302040eb9d923a37762bf6a0'),
+            new ButtonBuilder().setStyle('LINK').setLabel('The Voice').setURL('https://vlcvoice.com/')
         );
 
-    const gradeserversButtons = new MessageActionRow()
+    const gradeserversButtons = new ActionRowBuilder()
         .addComponents(
-            new MessageButton().setStyle('PRIMARY').setCustomId(`invite-${grade9._id}`).setLabel('Grade 9'),
-            //new MessageButton().setStyle('PRIMARY').setCustomId(`invite-${grade10._id}`).setLabel('Grade 10'),  // ;(
-            new MessageButton().setStyle('PRIMARY').setCustomId(`invite-${grade11._id}`).setLabel('Grade 11'),
-            new MessageButton().setStyle('PRIMARY').setCustomId(`invite-${grade12._id}`).setLabel('Grade 12'),
+            new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${grade9._id}`).setLabel('Grade 9'),
+            //new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${grade10._id}`).setLabel('Grade 10'),  // ;(
+            new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${grade11._id}`).setLabel('Grade 11'),
+            new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${grade12._id}`).setLabel('Grade 12'),
         );
 
-    const clubserversButtons = new MessageActionRow()
+    const clubserversButtons = new ActionRowBuilder()
         .addComponents(
-            clubs.map(c => new MessageButton().setStyle("PRIMARY").setCustomId(`invite-${c._id}`).setLabel(c.name)
+            clubs.map(c => new ButtonBuilder().setStyle("PRIMARY").setCustomId(`invite-${c._id}`).setLabel(c.name)
         ));
 
     channels.forEach(async channelID => {
