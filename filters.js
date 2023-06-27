@@ -114,6 +114,7 @@ module.exports = async function (message) {
     }
     // Embed Creator
     if (
+        message.author &&
         (await globals.perms(message.author)) == 0 &&
         message.content.startsWith("!embedify ")
     ) {
