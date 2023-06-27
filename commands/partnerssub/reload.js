@@ -52,7 +52,7 @@ module.exports = async function(interaction) {
             new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('VLC Classic').setURL(communityOld.invite),
             new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('VLC Archive').setURL('https://vlccommunity.notion.site/b73d20c433be47b0859fd792250dd8ca?v=88377dd7b209401090223851b6dcc037'),
             // new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('VLC Museum').setURL('https://vlccommunity.notion.site/VLC-Museum-7acf51d0302040eb9d923a37762bf6a0'),
-            new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('The Voice').setURL('https://vlcvoice.com/')
+            new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('The Voice').setURL('https://vlcvoice.tumblr.com/')
         );
 
     const gradeserversButtons = new ActionRowBuilder()
