@@ -69,6 +69,8 @@ module.exports = async function(interaction) {
         ));
 
     channels.forEach(async channelID => {
+        if (!channelID) return;
+
         let channel = await client.channels.fetch(channelID);
         await channel.messages.fetch({ limit: 100, after: "0" }).then((messagePage) => { messagePage.forEach(async (msg) => await msg.delete()); });
         await channel.send({ files: [header] } );
