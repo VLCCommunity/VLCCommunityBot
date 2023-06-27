@@ -5,7 +5,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 const { client, guilds, globals } = require('../../index');
-const { AttachmentBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
+const { AttachmentBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 const header = new AttachmentBuilder('./commands/partnerssub/partners.png')
 const mainPartners = new EmbedBuilder()
@@ -48,19 +48,19 @@ module.exports = async function(interaction) {
 
     const mainPartnersButtons = new ActionRowBuilder()
         .addComponents(
-            new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${community._id}`).setLabel('VLC Community'),
-            new ButtonBuilder().setStyle('LINK').setLabel('VLC Classic').setURL(communityOld.invite),
-            new ButtonBuilder().setStyle('LINK').setLabel('VLC Archive').setURL('https://vlccommunity.notion.site/b73d20c433be47b0859fd792250dd8ca?v=88377dd7b209401090223851b6dcc037'),
-            // new ButtonBuilder().setStyle('LINK').setLabel('VLC Museum').setURL('https://vlccommunity.notion.site/VLC-Museum-7acf51d0302040eb9d923a37762bf6a0'),
-            new ButtonBuilder().setStyle('LINK').setLabel('The Voice').setURL('https://vlcvoice.com/')
+            new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${community._id}`).setLabel('VLC Community'),
+            new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('VLC Classic').setURL(communityOld.invite),
+            new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('VLC Archive').setURL('https://vlccommunity.notion.site/b73d20c433be47b0859fd792250dd8ca?v=88377dd7b209401090223851b6dcc037'),
+            // new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('VLC Museum').setURL('https://vlccommunity.notion.site/VLC-Museum-7acf51d0302040eb9d923a37762bf6a0'),
+            new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('The Voice').setURL('https://vlcvoice.com/')
         );
 
     const gradeserversButtons = new ActionRowBuilder()
         .addComponents(
-            new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${grade9._id}`).setLabel('Grade 9'),
-            //new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${grade10._id}`).setLabel('Grade 10'),  // ;(
-            new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${grade11._id}`).setLabel('Grade 11'),
-            new ButtonBuilder().setStyle('PRIMARY').setCustomId(`invite-${grade12._id}`).setLabel('Grade 12'),
+            new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${grade9._id}`).setLabel('Grade 9'),
+            //new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${grade10._id}`).setLabel('Grade 10'),  // ;(
+            new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${grade11._id}`).setLabel('Grade 11'),
+            new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${grade12._id}`).setLabel('Grade 12'),
         );
 
     const clubserversButtons = new ActionRowBuilder()
