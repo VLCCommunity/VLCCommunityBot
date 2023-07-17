@@ -145,7 +145,7 @@ module.exports = async function (message) {
             embeds: [
                 {
                     author: {
-                        name: message.author.tag,
+                        name: message.author.tag.replace("#0", ""),
                         icon_url: message.author.displayAvatarURL(),
                     },
                     description: message.content,
