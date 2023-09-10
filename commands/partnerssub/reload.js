@@ -37,7 +37,7 @@ module.exports = async function(interaction) {
 
     let community = await guilds.findOne({ type: 'community'});
     let communityOld = await guilds.findOne({ type: 'community-old'});
-    let gradeServers = await guilds.find({ type: 'gradeserver' });
+    let gradeServers = await guilds.find({ type: 'gradeserver' }).toArray();
     let clubs = await guilds.find({ type: 'club' }).toArray();
     let channels = await guilds.find().map( function(g) { return g.channel; } ).toArray();
     //console.log(clubs);
