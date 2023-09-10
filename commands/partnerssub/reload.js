@@ -111,7 +111,11 @@ module.exports = async function (interaction) {
         await channel.messages
           .fetch({ limit: 100, after: "0" })
           .then((messagePage) => {
-            messagePage.forEach(async (msg) => await msg.delete());
+            messagePage.forEach(async (msg) => {
+              if (msg.author == client.user) {
+                await msg.delete();
+              }
+            });
           });
         await channel.send({ files: [header] });
         await channel.send({
