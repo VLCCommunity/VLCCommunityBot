@@ -62,7 +62,8 @@ module.exports = async function(interaction) {
             clubs.map(c => new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${c._id}`).setLabel(c.name)
         ));
 
-    await channels.forEach(async channelID => {
+
+    await Promise.all(channels.map(async channelID => {
         if (!channelID) return;
 
         let channel = await client.channels.fetch(channelID);
@@ -72,7 +73,7 @@ module.exports = async function(interaction) {
         await channel.send({ embeds: [gradeservers], components: [gradeserversButtons] } );
         await channel.send({ embeds: [clubservers], components: [clubserversButtons] } );
         await channel.send({ embeds: [footer] } );
-    });
+    }));
 
     globals.respondAgain(interaction, true, ':white_check_mark: Partnerships page reloaded.');
     globals.log(interaction.user, '/partners reload')
