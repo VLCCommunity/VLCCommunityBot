@@ -37,10 +37,7 @@ module.exports = async function(interaction) {
 
     let community = await guilds.findOne({ type: 'community'});
     let communityOld = await guilds.findOne({ type: 'community-old'});
-    let grade9 = await guilds.findOne({ type: 'grade9' });
-    //let grade10 = await guilds.findOne({ type: 'grade10' });
-    let grade11 = await guilds.findOne({ type: 'grade11' });
-    let grade12 = await guilds.findOne({ type: 'grade12' });
+    let gradeServers = await guilds.find({ type: 'grade9' });
     let clubs = await guilds.find({ type: 'club' }).toArray();
     let channels = await guilds.find().map( function(g) { return g.channel; } ).toArray();
     //console.log(clubs);
@@ -57,10 +54,7 @@ module.exports = async function(interaction) {
 
     const gradeserversButtons = new ActionRowBuilder()
         .addComponents(
-            new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${grade9._id}`).setLabel('Grade 9'),
-            //new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${grade10._id}`).setLabel('Grade 10'),  // ;(
-            new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${grade11._id}`).setLabel('Grade 11'),
-            new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${grade12._id}`).setLabel('Grade 12'),
+            ...gradeServers.map(gradeServer => new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId(`invite-${gradeServer._id}`).setLabel(gradeServer.name))
         );
 
     const clubserversButtons = new ActionRowBuilder()
