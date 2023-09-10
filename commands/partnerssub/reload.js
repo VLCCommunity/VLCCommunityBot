@@ -101,22 +101,22 @@ module.exports = async function (interaction) {
     ),
   );
 
-  await Promise.all(
+  await Promise.allSettled(
     channels.map(async (channelID) => {
       if (!channelID) return;
-
-      let channel = await client.channels.fetch(channelID);
-
+  
+      let channel;
       try {
-        await channel.messages
-          .fetch({ limit: 100, after: "0" })
-          .then((messagePage) => {
-            messagePage.forEach(async (msg) => {
-              if (msg.author == client.user) {
-                await msg.delete();
-              }
-            });
-          });
+        channel = await client.channels.fetch(channelID);
+  
+        const messagePage = await channel.messages.fetch({ limit: 100, after: "0" });
+  
+        for (const msg of messagePage.values()) {
+          if (msg.author === client.user) {
+            await msg.delete();
+          }
+        }
+  
         await channel.send({ files: [header] });
         await channel.send({
           embeds: [mainPartners],
@@ -132,10 +132,10 @@ module.exports = async function (interaction) {
         });
         await channel.send({ embeds: [footer] });
       } catch (err) {
-        console.log(`Failed to reload partners in #${channel.guild.name}`);
+        console.log(`Failed to reload partners in #${channel.guild.name}: ${err.message}`);
       }
-    }),
-  );
+    })
+  );  
 
   globals.respondAgain(
     interaction,
