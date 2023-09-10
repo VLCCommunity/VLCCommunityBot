@@ -67,12 +67,17 @@ module.exports = async function(interaction) {
         if (!channelID) return;
 
         let channel = await client.channels.fetch(channelID);
-        await channel.messages.fetch({ limit: 100, after: "0" }).then((messagePage) => { messagePage.forEach(async (msg) => await msg.delete()); });
-        await channel.send({ files: [header] } );
-        await channel.send({ embeds: [mainPartners], components: [mainPartnersButtons] } );
-        await channel.send({ embeds: [gradeservers], components: [gradeserversButtons] } );
-        await channel.send({ embeds: [clubservers], components: [clubserversButtons] } );
-        await channel.send({ embeds: [footer] } );
+
+        try {
+            await channel.messages.fetch({ limit: 100, after: "0" }).then((messagePage) => { messagePage.forEach(async (msg) => await msg.delete()); });
+            await channel.send({ files: [header] } );
+            await channel.send({ embeds: [mainPartners], components: [mainPartnersButtons] } );
+            await channel.send({ embeds: [gradeservers], components: [gradeserversButtons] } );
+            await channel.send({ embeds: [clubservers], components: [clubserversButtons] } );
+            await channel.send({ embeds: [footer] } );
+        } catch (err) {
+            console.log(`Failed to reload partners in #${channel.guild.name}`);
+        };
     }));
 
     globals.respondAgain(interaction, true, ':white_check_mark: Partnerships page reloaded.');

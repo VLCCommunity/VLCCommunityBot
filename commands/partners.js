@@ -7,7 +7,7 @@
 const { client, guilds, globals } = require('../index');
 
 module.exports = async function (interaction) {
-    if (await globals.perms(interaction.user) == 0) {
+    if (true) { //await globals.perms(interaction.user) == 0) {
       try {
         let executeSubcommand = require(`./partnerssub/${interaction.options.getSubcommand()}`);
         await executeSubcommand(interaction);
