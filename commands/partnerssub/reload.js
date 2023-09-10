@@ -51,6 +51,12 @@ module.exports = async function (interaction) {
   let community = await guilds.findOne({ type: "community" });
   let communityOld = await guilds.findOne({ type: "community-old" });
   let gradeServers = await guilds.find({ type: "gradeserver" }).toArray();
+  gradeServers.sort((a, b) => {
+    const yearA = parseInt(a.name.match(/\d+/)[0]);
+    const yearB = parseInt(b.name.match(/\d+/)[0]);
+    return yearA - yearB;
+  });
+
   let clubs = await guilds.find({ type: "club" }).toArray();
   let channels = await guilds
     .find()
@@ -104,19 +110,22 @@ module.exports = async function (interaction) {
   await Promise.allSettled(
     channels.map(async (channelID) => {
       if (!channelID) return;
-  
+
       let channel;
       try {
         channel = await client.channels.fetch(channelID);
-  
-        const messagePage = await channel.messages.fetch({ limit: 100, after: "0" });
-  
+
+        const messagePage = await channel.messages.fetch({
+          limit: 100,
+          after: "0",
+        });
+
         for (const msg of messagePage.values()) {
           if (msg.author === client.user) {
             await msg.delete();
           }
         }
-  
+
         await channel.send({ files: [header] });
         await channel.send({
           embeds: [mainPartners],
@@ -132,10 +141,12 @@ module.exports = async function (interaction) {
         });
         await channel.send({ embeds: [footer] });
       } catch (err) {
-        console.log(`Failed to reload partners in #${channel.guild.name}: ${err.message}`);
+        console.log(
+          `Failed to reload partners in #${channel.guild.name}: ${err.message}`,
+        );
       }
-    })
-  );  
+    }),
+  );
 
   globals.respondAgain(
     interaction,

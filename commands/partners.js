@@ -9,12 +9,14 @@ const { client, guilds, globals } = require("../index");
 module.exports = async function (interaction) {
   if ((await globals.perms(interaction.user)) == 0) {
     try {
-      let executeSubcommand = require(`./partnerssub/${interaction.options.getSubcommand()}`);
+      let executeSubcommand = require(
+        `./partnerssub/${interaction.options.getSubcommand()}`,
+      );
       await executeSubcommand(interaction);
     } catch (error) {
       console.log(
         `❌ Unable to execute ${interaction.options.getSubcommand()} partners subcommand. \n` +
-          error
+          error,
       );
     }
   } else {
@@ -22,7 +24,7 @@ module.exports = async function (interaction) {
       interaction,
       false,
       "❌ Insufficient Permissions",
-      "Only the Executive Adminstrator of VLC Community & Partners can execute this command."
+      "Only the Executive Adminstrator of VLC Community & Partners can execute this command.",
     );
   }
 };
