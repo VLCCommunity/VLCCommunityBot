@@ -42,7 +42,7 @@ const clubservers = new EmbedBuilder()
 const footer = new EmbedBuilder()
   .setColor("#2196F3")
   .setDescription(
-    "*VLC Community is student-run and not school-sanctioned, and is not in any way affiliated with or endorsed by the VLC. The VLC name, logo, and all other branding are property of the Virtual Learning Center.*\n\n*Proudly under the eternal tyranny of the great dictator Yusuf Rahman.* <:yusufr:942827654397198396>",
+    "*VLC Community is student-run and not school-sanctioned, and is not in any way affiliated with or endorsed by the VLC. The VLC name, logo, and all other branding are property of the Virtual Learning Center.*\n\n*Proudly under the eternal tyranny of the great dictator Yusuf Rahman.* <:yusufr:1139374904974786671>",
   );
 
 module.exports = async function (interaction) {
