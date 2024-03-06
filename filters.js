@@ -97,7 +97,7 @@ module.exports = async function (message) {
   //
 
   // Yusuf's Retirement Notice
-  if (message.content.includes("<@218065068875579393>")) {
+  if (message.content.includes("<@218065068875579393>") && !(message.guild && message.guild.id === '975661213851742298')) {
     await message.reply({
       embeds: [
         {
@@ -148,7 +148,7 @@ module.exports = async function (message) {
 
   // Whether to log the message
   const logMessage = conditions.some((condition) =>
-    lowerCaseMessage.includes(condition) && lowerCaseMessage.guild.id !== '975661213851742298'
+    lowerCaseMessage.includes(condition) && !(lowerCaseMessage.guild && lowerCaseMessage.guild.id === '975661213851742298')
   );
 
   // Logger
