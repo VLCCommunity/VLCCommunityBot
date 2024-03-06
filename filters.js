@@ -147,9 +147,7 @@ module.exports = async function (message) {
   ];
 
   // Whether to log the message
-  const logMessage = conditions.some((condition) =>
-    lowerCaseMessage.includes(condition) && !(lowerCaseMessage.guild && lowerCaseMessage.guild.id === '975661213851742298')
-  );
+  const logMessage = conditions.some((condition) => (lowerCaseMessage.includes(condition) && !(lowerCaseMessage.guild && lowerCaseMessage.guild.id === '975661213851742298')));
 
   // Logger
   if (logMessage) {
