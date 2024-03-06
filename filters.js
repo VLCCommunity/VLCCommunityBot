@@ -7,8 +7,21 @@
 const { client, globals } = require("./index");
 const { ButtonStyle } = require("discord.js");
 
+// Ignored guilds
+const ignoredGuilds = ["975661213851742298"];
+
+// Lowercase message logging conditions
+const conditions = JSON.parse(
+  atob(
+    "WwogICJ5dXN1ZiIsCiAgIjxAMjE4MDY1MDY4ODc1NTc5MzkzPiIsCiAgImRpY3RhdG9yIiwKICAidHlyYW50IiwKICAibXVzdGFmYSIsCiAgImFoc2VuIiwKICAiaWJyYWhpbSIsCiAgImthcm1hIiwKICAibWFociIsCiAgIm1haGFyIgpd"
+  )
+);
+
 module.exports = async function (message) {
   if (message.author.bot) return;
+
+  // Message in Ignored Guild
+  if (message.guild && ignoredGuilds.includes(message.guild.id)) return;
 
   // Introductions Channel
   if (message.channel.id == "829792673451868263" && message.type == "REPLY") {
@@ -94,10 +107,8 @@ module.exports = async function (message) {
     }
   }
 
-  //
-
   // Yusuf's Retirement Notice
-  if (message.content.includes("<@218065068875579393>") && !(message.guild && message.guild.id === '975661213851742298')) {
+  if (message.content.includes("<@218065068875579393>")) {
     await message.reply({
       embeds: [
         {
@@ -112,6 +123,7 @@ module.exports = async function (message) {
       ],
     });
   }
+
   // Embed Creator
   if (
     message.author &&
@@ -132,22 +144,10 @@ module.exports = async function (message) {
   // Convert message content to lowercase
   let lowerCaseMessage = message.content.toLowerCase();
 
-  // Message conditions
-  let conditions = [
-    "yusuf",
-    "<@218065068875579393>",
-    "dictator",
-    "tyrant",
-    "mustafa",
-    "ahsen",
-    "ibrahim",
-    "karma",
-    "mahr",
-    "mahar",
-  ];
-
   // Whether to log the message
-  const logMessage = conditions.some((condition) => (lowerCaseMessage.includes(condition) && !(lowerCaseMessage.guild && lowerCaseMessage.guild.id === '975661213851742298')));
+  const logMessage = conditions.some((condition) =>
+    lowerCaseMessage.includes(condition)
+  );
 
   // Logger
   if (logMessage) {
