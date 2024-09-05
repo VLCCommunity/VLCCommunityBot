@@ -20,7 +20,7 @@ const perms = async function (user) {
 
   if (!commMember) return 3;
   if (
-    user.id == "218065068875579393" ||
+    user.id == "1168661912289030296" ||
     commMember.roles.cache.has("860576761287934013")
   )
     return 0;

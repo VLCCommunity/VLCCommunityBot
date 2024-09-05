@@ -42,7 +42,7 @@ const clubservers = new EmbedBuilder()
 const footer = new EmbedBuilder()
   .setColor("#2196F3")
   .setDescription(
-    "*VLC Community is student-run and not school-sanctioned, and is not in any way affiliated with or endorsed by the VLC. The VLC name, logo, and all other branding are property of the Virtual Learning Center.*\n\n*Proudly under the eternal tyranny of the great dictator Yusuf Rahman.* <:yusufr:1139374904974786671>",
+    "*VLC Community is student-run and not school-sanctioned, and is not in any way affiliated with or endorsed by the VLC. The VLC name, logo, and all other branding are property of the Virtual Learning Center.*",
   );
 
 module.exports = async function (interaction) {
@@ -51,6 +51,7 @@ module.exports = async function (interaction) {
   let community = await guilds.findOne({ type: "community" });
   let communityOld = await guilds.findOne({ type: "community-old" });
   let gradeServers = await guilds.find({ type: "gradeserver" }).toArray();
+  
   gradeServers.sort((a, b) => {
     const yearA = parseInt(a.name.match(/\d+/)[0]);
     const yearB = parseInt(b.name.match(/\d+/)[0]);
@@ -64,8 +65,6 @@ module.exports = async function (interaction) {
       return g.channel;
     })
     .toArray();
-  //console.log(clubs);
-  //console.log(community._id)
 
   const mainPartnersButtons = new ActionRowBuilder().addComponents(
     new ButtonBuilder()
